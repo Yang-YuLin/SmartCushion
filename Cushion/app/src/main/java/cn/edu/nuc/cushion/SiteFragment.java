@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
@@ -64,6 +65,10 @@ public class SiteFragment extends Fragment {
                         Logger.d("here" + route);
 
                         curSite = route.getSite_id();
+
+
+                        changeIcon(curSite - 1, false);
+
                         startSie = route.getStart();
                         endSite = route.getEnd();
                         if (curSite == endSite) {
@@ -73,6 +78,10 @@ public class SiteFragment extends Fragment {
                             flag = 1;
                         }
                         curSite += flag;
+
+
+                        changeIcon(curSite - 1, true);
+
 
                         Logger.d("222" + curSite);
 
@@ -96,14 +105,17 @@ public class SiteFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SiteQuickAdapter(R.layout.item_site_driver, mSiteList, idSiteMap);
+        adapter = new SiteQuickAdapter(R.layout.item_site_driver, mSiteList);
+
         mRecyclerView.setAdapter(adapter);
 
         initSite();
+
         return view;
     }
 
     public void initSite() {
+
         dataServer.getSiteList(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -129,5 +141,31 @@ public class SiteFragment extends Fragment {
             }
         });
 
+        dataServer.getCurrentSite(1, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                Route route = new Gson().fromJson(json, Route.class);
+
+                curSite = route.getSite_id();
+                changeIcon(curSite - 1, true);
+            }
+        });
+
+    }
+
+    private void changeIcon(final int position, final boolean isRed) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ImageView imageViewOld = (ImageView) adapter.getViewByPosition(mRecyclerView, position, R.id.circle);
+                imageViewOld.setImageResource(isRed ? R.drawable.cricle_red : R.drawable.circle);
+            }
+        });
     }
 }

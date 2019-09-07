@@ -19,11 +19,10 @@ import cn.edu.nuc.cushion.bean.Site;
  * Created by Yangyulin on 2019/9/7.
  */
 public class SiteQuickAdapter extends BaseQuickAdapter<Site, BaseViewHolder> {
-    private HashMap<Integer, Site> mSiteHashMap;
 
-    public SiteQuickAdapter(int layoutResId, @Nullable List<Site> data, HashMap<Integer, Site> idSiteMap) {
+    public SiteQuickAdapter(int layoutResId, @Nullable List<Site> data) {
         super(layoutResId, data);
-        mSiteHashMap = idSiteMap;
+
     }
 
     @Override
