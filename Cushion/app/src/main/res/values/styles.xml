@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#2196F3</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="tweetName">
+        <item name="android:textColor">@color/hard_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:shadowColor">#44000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="tweetText">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColorLink">#888888</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="tweetDate">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#FFCCCCCC</item>
+    </style>
+
+    <style name="TextLabel" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorControlActivated">#FFCC00</item>
+    </style>
+</resources>

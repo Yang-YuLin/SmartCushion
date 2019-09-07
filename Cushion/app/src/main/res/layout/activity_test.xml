@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/bt_get"
+        android:text="获取信息测试"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <Button
+        android:id="@+id/bt_send_on"
+        android:text="开灯"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <Button
+        android:id="@+id/bt_send_off"
+        android:text="关灯"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+</LinearLayout>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--相对布局,可以通过相对定位的方式让控件出现在布局中的任何位置-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--帧布局,所有的控件都会默认摆放在布局的左上角-->
+    <FrameLayout
+        android:layout_width="320dp"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true">
+
+        <!--app:cardCornerRadius属性指定卡片圆角的弧度-->
+        <!--app:elevation属性指定卡片的高度-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="488dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="#2ea67f"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:text="REGISTER"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingEnd="30dp"
+                    android:paddingStart="50dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="#f0f7f4"
+                        android:theme="@style/TextLabel">
+
+                        <EditText
+                            android:id="@+id/username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_bg_edit_2"
+                            android:hint="用户名"
+                            android:inputType="textPersonName"
+                            android:paddingBottom="2dp"
+                            android:textColor="#f0f7f4"
+                            android:textCursorDrawable="@drawable/bg_input_cursor_2"
+                            android:textSize="20sp" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="30dp"
+                    android:paddingStart="50dp">
+
+                    <android.support.design.widget.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="#f0f7f4"
+                        android:theme="@style/TextLabel">
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_bg_edit_2"
+                            android:hint="密码"
+                            android:inputType="textPassword"
+                            android:paddingBottom="2dp"
+                            android:textColor="#f0f7f4"
+                            android:textCursorDrawable="@drawable/bg_input_cursor_2"
+                            android:textSize="20sp" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingEnd="30dp"
+                    android:paddingStart="50dp">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="身份:"
+                            android:textSize="24sp"
+                            android:textColor="#ffffff"/>
+
+                        <RadioGroup
+                            android:orientation="horizontal">
+                            <RadioButton
+                                android:id="@+id/male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="乘客"
+                                android:textSize="24sp"
+                                android:textColor="#ffffff"/>
+
+                            <RadioButton
+                                android:id="@+id/female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="司机"
+                                android:textSize="24sp"
+                                android:textColor="#ffffff"/>
+                        </RadioGroup>
+
+                    </TableRow>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/goBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bt_shape_2"
+                    android:stateListAnimator="@drawable/state_list_animator_z"
+                    android:text="NEXT"
+                    android:textColor="#2fa881"></Button>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:paddingEnd="30dp"
+                    android:paddingStart="50dp">
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:src="@drawable/plus_x"
+            android:transitionName="loginFab"
+            app:fabSize="normal" />
+    </FrameLayout>
+
+</RelativeLayout>
