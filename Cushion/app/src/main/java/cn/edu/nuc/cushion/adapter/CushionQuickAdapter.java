@@ -25,6 +25,9 @@ public class CushionQuickAdapter extends BaseQuickAdapter<Cushion, BaseViewHolde
 
     @Override
     protected void convert(BaseViewHolder helper, Cushion item) {
+        Logger.d("cushion q adapter" + item);
+
+
         TextView idTv =  helper.getView(R.id.cushion_id);
         idTv.setText(String.valueOf(item.getId()));
 

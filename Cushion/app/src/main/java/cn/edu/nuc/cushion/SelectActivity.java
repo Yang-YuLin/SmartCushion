@@ -71,8 +71,8 @@ public class SelectActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Intent intent = new Intent(SelectActivity.this, CushionActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(SelectActivity.this, CushionActivity.class);
+//                        startActivity(intent);
                     }
                 });
            }

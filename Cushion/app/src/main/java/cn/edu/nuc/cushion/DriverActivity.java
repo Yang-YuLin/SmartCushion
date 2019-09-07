@@ -37,6 +37,9 @@ public class DriverActivity extends AppCompatActivity {
                     case R.id.navigation_site:
                         showFragment(1);
                         return true;
+                    case R.id.navigation_mine:
+                        showFragment(2);
+                        return true;
                 }
                 return false;
             }
@@ -52,6 +55,7 @@ public class DriverActivity extends AppCompatActivity {
             fragmentList = new ArrayList<>();
         }
         fragmentList.add(new CushionFragment());
+        fragmentList.add(new SiteFragment());
         fragmentList.add(new MineFragment());
     }
 

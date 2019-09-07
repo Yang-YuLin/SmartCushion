@@ -10,31 +10,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import cn.edu.nuc.cushion.adapter.CushionQuickAdapter;
-import cn.edu.nuc.cushion.bean.Cushion;
+
+import cn.edu.nuc.cushion.adapter.SiteQuickAdapter;
 import cn.edu.nuc.cushion.bean.Route;
 import cn.edu.nuc.cushion.bean.Site;
 import cn.edu.nuc.cushion.utils.DataServer;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
 /**
  * Created by Yangyulin on 2019/9/7.
  */
-public class CushionFragment extends Fragment {
-    private List<Cushion> mCushionList = new ArrayList<>();//要展示的数据源
+public class SiteFragment extends Fragment {
+    private List<Site> mSiteList = new ArrayList<>();//要展示的数据源
     private RecyclerView mRecyclerView = null;
     private FloatingActionButton change_site;
     private DataServer dataServer = new DataServer();
-    private CushionQuickAdapter adapter = null;
+    private SiteQuickAdapter adapter = null;
     private int flag = 1;
     private int curSite;
     private int startSie;
@@ -44,8 +45,7 @@ public class CushionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cushion,container,false);
-
+        View view = inflater.inflate(R.layout.fragment_site, container, false);
         mRecyclerView = view.findViewById(R.id.recycler_view);
         change_site = view.findViewById(R.id.change_site);
         change_site.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +72,7 @@ public class CushionFragment extends Fragment {
                         if (curSite == startSie) {
                             flag = 1;
                         }
-                        curSite  += flag;
+                        curSite += flag;
 
                         Logger.d("222" + curSite);
 
@@ -96,15 +96,15 @@ public class CushionFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new CushionQuickAdapter(R.layout.item_cushion, mCushionList, idSiteMap);
+        adapter = new SiteQuickAdapter(R.layout.item_site_driver, mSiteList, idSiteMap);
         mRecyclerView.setAdapter(adapter);
 
-        initCushion();
+        initSite();
         return view;
     }
 
-    public void initCushion(){
-        dataServer.getCushionList(new Callback() {
+    public void initSite() {
+        dataServer.getSiteList(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -113,24 +113,19 @@ public class CushionFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
+                Site[] sites = new Gson().fromJson(json, Site[].class);
 
-//                Logger.d("cushionfragment " + json);
-
-                Cushion[] cushions = new Gson().fromJson(json,Cushion[].class);
-
-                for (int i = 0; i < cushions.length; i++) {
-                    Cushion cushion = cushions[i];
-                    mCushionList.add(cushion);
+                for (int i = 0; i < sites.length; i++) {
+                    Site site = sites[i];
+                    mSiteList.add(site);
                 }
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        Logger.d("cushion fragment size" + mCushionList.size());
                         adapter.notifyDataSetChanged();
                     }
                 });
-
             }
         });
 
