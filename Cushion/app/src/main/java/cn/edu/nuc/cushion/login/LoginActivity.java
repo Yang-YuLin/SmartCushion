@@ -2,7 +2,6 @@ package cn.edu.nuc.cushion.login;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -11,25 +10,16 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.transition.Explode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-import com.google.gson.Gson;
+
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-import java.io.IOException;
 
-import cn.edu.nuc.cushion.BusFragment;
-import cn.edu.nuc.cushion.CushionActivity;
-import cn.edu.nuc.cushion.MainActivity;
+import cn.edu.nuc.cushion.DriverActivity;
+import cn.edu.nuc.cushion.PassengerActivity;
 import cn.edu.nuc.cushion.R;
-import cn.edu.nuc.cushion.bean.Admin;
-import cn.edu.nuc.cushion.utils.DataServer;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 /**
  * Created by Yangyulin on 2019/9/2.
@@ -74,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                 final String username = usernameEt.getText().toString();
                 final String password = passwordEt.getText().toString();
                 if(username.equals("admin") && password.equals("admin")){
-                    Intent intent = new Intent(LoginActivity.this, CushionActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, DriverActivity.class);
                     startActivity(intent);
                 }else if(username.equals("123456") && password.equals("123456")){
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, PassengerActivity.class);
                     startActivity(intent);
                 }
             }

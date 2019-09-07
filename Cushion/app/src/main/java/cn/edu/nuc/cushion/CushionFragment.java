@@ -1,12 +1,15 @@
 package cn.edu.nuc.cushion;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import java.io.IOException;
@@ -24,9 +27,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
 /**
- * Created by Yangyulin on 2019/9/2
+ * Created by Yangyulin on 2019/9/7.
  */
-public class CushionActivity extends AppCompatActivity {
+public class CushionFragment extends Fragment {
     private List<Cushion> mCushionList = new ArrayList<>();//要展示的数据源
     private RecyclerView mRecyclerView = null;
     private FloatingActionButton change_site;
@@ -39,13 +42,13 @@ public class CushionActivity extends AppCompatActivity {
     private OkHttpClient mOkHttpClient = new OkHttpClient();
     private HashMap<Integer, Site> idSiteMap = new HashMap<>();
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cushion);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_cushion,container,false);
 
-        mRecyclerView = findViewById(R.id.recycler_view);
-        change_site = findViewById(R.id.change_site);
+        mRecyclerView = view.findViewById(R.id.recycler_view);
+        change_site = view.findViewById(R.id.change_site);
         change_site.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,11 +90,10 @@ public class CushionActivity extends AppCompatActivity {
                         });
                     }
                 });
-
             }
         });
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -99,14 +101,14 @@ public class CushionActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(adapter);
 
         initCushion();
-
+        return view;
     }
 
-    private void initCushion(){
+    public void initCushion(){
         dataServer.getCushionList(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -119,7 +121,7 @@ public class CushionActivity extends AppCompatActivity {
                     mCushionList.add(cushion);
                 }
 
-                runOnUiThread(new Runnable() {
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();

@@ -3,7 +3,6 @@ package cn.edu.nuc.cushion.login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,16 +15,10 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
-import java.io.IOException;
 
-import cn.edu.nuc.cushion.CushionActivity;
-import cn.edu.nuc.cushion.MainActivity;
+import cn.edu.nuc.cushion.DriverActivity;
+import cn.edu.nuc.cushion.PassengerActivity;
 import cn.edu.nuc.cushion.R;
-import cn.edu.nuc.cushion.utils.DataServer;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 /**
  * Created by Yangyulin on 2019/9/2.
@@ -60,10 +53,10 @@ public class RegisterActivity extends AppCompatActivity {
                 final String password = passwordEt.getText().toString();
 
                 if(username.equals("admin") && password.equals("admin") && driver.isChecked()){
-                    Intent intent = new Intent(RegisterActivity.this, CushionActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, DriverActivity.class);
                     startActivity(intent);
                 }else if(username.equals("123456") && password.equals("123456") && passenger.isChecked()){
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, PassengerActivity.class);
                     startActivity(intent);
                 }
             }

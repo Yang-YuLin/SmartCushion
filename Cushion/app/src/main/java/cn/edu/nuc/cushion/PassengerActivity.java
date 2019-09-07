@@ -1,6 +1,5 @@
 package cn.edu.nuc.cushion;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,7 +14,7 @@ import com.orhanobut.logger.Logger;
 /**
  * Created by Yangyulin on 2019/9/2.
  */
-public class MainActivity extends AppCompatActivity {
+public class PassengerActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView = null;
     private Fragment currentFragment = null;
@@ -24,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_passenger);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation_view);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view_passenger);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

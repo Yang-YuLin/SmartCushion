@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".PassengerActivity">
 
     <!--在托管activity代码中添加UI fragment   定义容器视图,该容器视图是个通用性视图-->
     <!--FrameLayout又称作帧布局，这种布局没有方便的定位方式，所有的控件都会默认摆放在布局的左上角-->
@@ -18,10 +18,10 @@
     <!--android:layout_gravity用于指定控件在布局中的对齐方式-->
     <!--app是自定义命名空间-->
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
+        android:id="@+id/bottom_navigation_view_passenger"
         android:layout_width='match_parent'
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation_passenger" />
 
 </LinearLayout>

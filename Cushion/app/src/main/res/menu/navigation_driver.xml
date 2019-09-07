@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_cushion"
+        android:icon="@drawable/cushion"
+        android:title="坐垫管理"/>
+
+    <item
+        android:id="@+id/navigation_site"
+        android:icon="@drawable/site"
+        android:title="站点管理"/>
+</menu>

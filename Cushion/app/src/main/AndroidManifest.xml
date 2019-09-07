@@ -28,9 +28,9 @@
             android:label="选择目的站" />
         <activity android:name=".TestActivity" />
         <activity android:name=".YouhuiActivity" />
-        <activity android:name=".CushionActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".PassengerActivity" />
         <activity android:name=".login.RegisterActivity" />
+        <activity android:name=".DriverActivity" />
 
         <service
             android:name=".MyService">
