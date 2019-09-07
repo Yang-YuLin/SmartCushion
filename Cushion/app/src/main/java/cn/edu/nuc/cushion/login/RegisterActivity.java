@@ -36,8 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     private CardView cardView;
     private EditText usernameEt;
     private EditText passwordEt;
-    private RadioButton chengke;
-    private RadioButton siji;
+    private RadioButton passenger;
+    private RadioButton driver;
     private Button nextBtn;
 
     @Override
@@ -59,37 +59,13 @@ public class RegisterActivity extends AppCompatActivity {
                 final String username = usernameEt.getText().toString();
                 final String password = passwordEt.getText().toString();
 
-                new DataServer().register(username, password, new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        if(username.equals("") || username == null || password.equals("") || password == null){
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(RegisterActivity.this, "请输入完整的信息以完成注册!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }else{
-                            //在本地存用户手机号
-                            SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();//表示只有当前的应用程序才可以对这个SharedPreferences文件进行读写
-                            editor.putString("username",username);
-                            editor.putString("password",password);
-                            editor.apply();//提交数据,完成数据存储的任务
-                            if (username == "root") {
-                                Intent intent = new Intent(RegisterActivity.this, CushionActivity.class);
-                                startActivity(intent);
-                            }else{
-                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                        }
-                    }
-                });
+                if(username.equals("admin") && password.equals("admin") && driver.isChecked()){
+                    Intent intent = new Intent(RegisterActivity.this, CushionActivity.class);
+                    startActivity(intent);
+                }else if(username.equals("123456") && password.equals("123456") && passenger.isChecked()){
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -100,6 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
         usernameEt = findViewById(R.id.username);
         passwordEt = findViewById(R.id.password);
         nextBtn = findViewById(R.id.goBtn);
+        passenger = findViewById(R.id.passenger);
+        driver = findViewById(R.id.driver);
     }
 
     private void ShowEnterAnimation() {

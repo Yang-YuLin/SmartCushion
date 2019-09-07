@@ -112,21 +112,22 @@
 
                         <RadioGroup
                             android:orientation="horizontal">
+
                             <RadioButton
-                                android:id="@+id/male"
+                                android:id="@+id/passenger"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="乘客"
-                                android:textSize="24sp"
-                                android:textColor="#ffffff"/>
+                                android:textColor="#ffffff"
+                                android:textSize="24sp" />
 
                             <RadioButton
-                                android:id="@+id/female"
+                                android:id="@+id/driver"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="司机"
-                                android:textSize="24sp"
-                                android:textColor="#ffffff"/>
+                                android:textColor="#ffffff"
+                                android:textSize="24sp" />
                         </RadioGroup>
 
                     </TableRow>

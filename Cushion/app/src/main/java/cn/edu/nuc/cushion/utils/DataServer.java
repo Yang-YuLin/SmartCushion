@@ -21,34 +21,6 @@ public class DataServer {
     private OkHttpClient okHttpClient = new OkHttpClient();
 
     /**
-     * 注册
-     * @param username
-     * @param password
-     * @param callback
-     */
-    public void register(String username, String password, Callback callback) {
-        String url = "";
-        RequestBody requestBody = new FormBody.Builder()
-                .add("username", username)
-                .add("password", password)
-                .build();//构建body表单   RequestBody对象存放待提交的参数
-        Request request = new Request.Builder()
-                .url(url).post(requestBody)
-                .build();//想要发起http请求,就需要创建Request对象  url:设置目标的网络地址
-        okHttpClient.newCall(request).enqueue(callback);//异步 发送请求并获取服务器返回的数据   execute:同步
-    }
-
-    /**
-     * 登录,得到特定的某个用户
-     * @param callback 回调
-     */
-    public void getUser(String username, Callback callback) {
-        String url = "";
-        Request request = new Request.Builder().url(url).build();
-        okHttpClient.newCall(request).enqueue(callback);
-    }
-
-    /**
      * 读取硬件信息
      * @param callback
      */
