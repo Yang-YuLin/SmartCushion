@@ -11,11 +11,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.nuc.cushion.adapter.PushAdapter;
+import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.Push;
+import cn.edu.nuc.cushion.bean.Route;
+import cn.edu.nuc.cushion.utils.DataServer;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by Yangyulin on 2019/9/2.
@@ -23,12 +34,17 @@ import cn.edu.nuc.cushion.bean.Push;
 public class BusFragment extends Fragment{
     private ImageView bus = null;
     private List<Push> pushlist = new ArrayList<>();
+    private TextView currentSite = null;
+    private TextView purposeSite = null;
+    private DataServer dataServer = new DataServer();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bus,container,false);
         bus = view.findViewById(R.id.bus);
+        currentSite = view.findViewById(R.id.currentSite);
+        purposeSite = view.findViewById(R.id.purposeSite);
         bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +58,36 @@ public class BusFragment extends Fragment{
         recyclerView.setLayoutManager(layoutManager);
         PushAdapter adapter = new PushAdapter(pushlist);
         recyclerView.setAdapter(adapter);
+        dataServer.getCurrentSite(1, new Callback(){
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                Route route = new Gson().fromJson(json, Route.class);
+
+                currentSite.setText("当前站:" + route.getSite_id() + "道门");
+            }
+        });
+
+        dataServer.getCushionList(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                Cushion[] cushions = new Gson().fromJson(json,Cushion[].class);
+                if(cushions[0].getSite_id()!=-1){
+                    purposeSite.setText("目的站:" + cushions[0].getSite_id() + "道门");
+                }
+            }
+        });
         return view;
     }
 

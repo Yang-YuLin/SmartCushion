@@ -32,7 +32,6 @@ import okhttp3.Response;
 public class CushionFragment extends Fragment {
     private List<Cushion> mCushionList = new ArrayList<>();//要展示的数据源
     private RecyclerView mRecyclerView = null;
-    private FloatingActionButton change_site;
     private DataServer dataServer = new DataServer();
     private CushionQuickAdapter adapter = null;
     private int flag = 1;
@@ -47,50 +46,6 @@ public class CushionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cushion,container,false);
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
-        change_site = view.findViewById(R.id.change_site);
-        change_site.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dataServer.getCurrentSite(1, new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        String json = response.body().string();
-                        Route route = new Gson().fromJson(json, Route.class);
-                        Logger.d("here" + route);
-
-                        curSite = route.getSite_id();
-                        startSie = route.getStart();
-                        endSite = route.getEnd();
-                        if (curSite == endSite) {
-                            flag = -1;
-                        }
-                        if (curSite == startSie) {
-                            flag = 1;
-                        }
-                        curSite  += flag;
-
-                        Logger.d("222" + curSite);
-
-                        dataServer.setCurrentSite(1, curSite, new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-                                Logger.d(response.body().string());
-                            }
-                        });
-                    }
-                });
-            }
-        });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -114,8 +69,6 @@ public class CushionFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
 
-//                Logger.d("cushionfragment " + json);
-
                 Cushion[] cushions = new Gson().fromJson(json,Cushion[].class);
 
                 for (int i = 0; i < cushions.length; i++) {
@@ -126,7 +79,6 @@ public class CushionFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        Logger.d("cushion fragment size" + mCushionList.size());
                         adapter.notifyDataSetChanged();
                     }
                 });

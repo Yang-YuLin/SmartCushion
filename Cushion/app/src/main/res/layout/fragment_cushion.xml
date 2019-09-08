@@ -14,15 +14,6 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"></TextView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/change_site"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="50dp"
-        app:elevation="8dp"
-        android:src="@drawable/change_site"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"

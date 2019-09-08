@@ -6,12 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import cn.edu.nuc.cushion.adapter.SelectAdapter;
+import cn.edu.nuc.cushion.bean.Route;
 import cn.edu.nuc.cushion.bean.Site;
 import cn.edu.nuc.cushion.utils.DataServer;
 import okhttp3.Call;
@@ -62,7 +65,7 @@ public class SelectActivity extends AppCompatActivity {
 
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, final int position) {
+            public void onItemClick(BaseQuickAdapter adapter, final View view, final int position) {
                 dataServer.changePurposeSiteId(1, position + 1, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -71,8 +74,16 @@ public class SelectActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-//                        Intent intent = new Intent(SelectActivity.this, CushionActivity.class);
-//                        startActivity(intent);
+                        String json = response.body().string();
+                        final Site cushion = new Gson().fromJson(json,Site.class);
+                        com.orhanobut.logger.Logger.d("解析"+cushion);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(SelectActivity.this,"您已选择" + (position+1) + "道门作为目的站",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                     }
                 });
            }
