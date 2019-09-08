@@ -214,4 +214,17 @@ public class DataServer {
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
     }
+
+    /**
+     * 读取新闻（6条）
+     * @param callback
+     */
+    public void requestNews(Callback callback) {
+        String url = "http://192.168.0.100:8000/news";
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+        okHttpClient.newCall(request).enqueue(callback);
+    }
 }

@@ -56,7 +56,9 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Logger.d("here2");
-        timerTask(5000);
+
+
+        timerTask(3000);
         return super.onStartCommand(intent, flags, startId);
     }
 

@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button goBtn;
     private CardView cardView;
     private FloatingActionButton fab;
-    private String TAG = "LoginActivity";
+    public static boolean identity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +63,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 final String username = usernameEt.getText().toString();
                 final String password = passwordEt.getText().toString();
-                if(username.equals("admin") && password.equals("admin")){
+                if(username.equals("18406587382") && password.equals("18406587382")){
+                    identity = true;
                     Intent intent = new Intent(LoginActivity.this, DriverActivity.class);
                     startActivity(intent);
-                }else if(username.equals("123456") && password.equals("123456")){
+                }else if(username.equals("15525011526") && password.equals("15525011526")){
+                    identity = false;
                     Intent intent = new Intent(LoginActivity.this, PassengerActivity.class);
                     startActivity(intent);
                 }

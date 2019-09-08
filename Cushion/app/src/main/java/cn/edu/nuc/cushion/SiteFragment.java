@@ -105,7 +105,7 @@ public class SiteFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SiteQuickAdapter(R.layout.item_site_driver, mSiteList);
+        adapter = new SiteQuickAdapter(R.layout.item_site_driver, mSiteList,getContext());
 
         mRecyclerView.setAdapter(adapter);
 
@@ -164,7 +164,9 @@ public class SiteFragment extends Fragment {
             @Override
             public void run() {
                 ImageView imageViewOld = (ImageView) adapter.getViewByPosition(mRecyclerView, position, R.id.circle);
-                imageViewOld.setImageResource(isRed ? R.drawable.circle_yellow : R.drawable.circle);
+                if (imageViewOld != null) {
+                    imageViewOld.setImageResource(isRed ? R.drawable.circle_yellow : R.drawable.circle);
+                }
             }
         });
     }

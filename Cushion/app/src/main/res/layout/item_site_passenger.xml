@@ -22,12 +22,11 @@
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/animation_img1"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/tweetText"

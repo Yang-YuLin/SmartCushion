@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import cn.edu.nuc.cushion.login.LoginActivity;
 
 /**
@@ -36,13 +35,16 @@ public class MineFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mine,container,false);
 
         sharedPreferences = getActivity().getSharedPreferences("data", getActivity().MODE_PRIVATE);
-        telNum = sharedPreferences.getString("telNum","");
-        nickName = sharedPreferences.getString("nickName", "");
 
         telNumTv = view.findViewById(R.id.telNum);
         nickNameTv = view.findViewById(R.id.nickName);
-        telNumTv.setText("    账号: "+telNum);
-        nickNameTv.setText("    昵称: "+nickName);
+        if(LoginActivity.identity == true){
+            telNumTv.setText("    账号: "+"18406587382");
+            nickNameTv.setText("    昵称: "+"这是我的昵称哦");
+        }else{
+            telNumTv.setText("    账号: "+"15525011526");
+            nickNameTv.setText("    昵称: "+"这是我的昵称哦");
+        }
 
         youhui = view.findViewById(R.id.youhui);
         setting = view.findViewById(R.id.setting);

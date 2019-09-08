@@ -17,7 +17,7 @@ import com.orhanobut.logger.Logger;
 public class PassengerActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView = null;
-    private Fragment currentFragment = null;
+    private Fragment currentFragment = new Fragment();
     private List<Fragment> fragmentList;
 
     @Override
@@ -63,7 +63,6 @@ public class PassengerActivity extends AppCompatActivity {
             if (fragment != null && currentFragment != fragment) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 if (currentFragment != null) {
-                    //Logger.d("current f != null ,hide" + position);
                     transaction.hide(currentFragment);//隐藏当前fragment
                 } else {
                     Logger.d("current f == null");

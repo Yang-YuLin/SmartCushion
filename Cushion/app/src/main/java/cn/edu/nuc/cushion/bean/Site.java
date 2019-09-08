@@ -11,6 +11,7 @@ public class Site {
 
     private int id;
     private String names;
+    private String url;
 
     public int getId() {
         return id;
@@ -26,6 +27,14 @@ public class Site {
 
     public void setName(String name) {
         this.names = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

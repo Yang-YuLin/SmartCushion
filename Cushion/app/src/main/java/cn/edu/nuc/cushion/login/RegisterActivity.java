@@ -52,10 +52,12 @@ public class RegisterActivity extends AppCompatActivity {
                 final String username = usernameEt.getText().toString();
                 final String password = passwordEt.getText().toString();
 
-                if(username.equals("admin") && password.equals("admin") && driver.isChecked()){
+                if(username.equals("18406587382") && password.equals("18406587382") && driver.isChecked()){
+                    LoginActivity.identity = true;
                     Intent intent = new Intent(RegisterActivity.this, DriverActivity.class);
                     startActivity(intent);
-                }else if(username.equals("123456") && password.equals("123456") && passenger.isChecked()){
+                }else if(username.equals("15525011526") && password.equals("15525011526") && passenger.isChecked()){
+                    LoginActivity.identity = false;
                     Intent intent = new Intent(RegisterActivity.this, PassengerActivity.class);
                     startActivity(intent);
                 }

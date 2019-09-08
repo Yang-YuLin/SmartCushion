@@ -3,6 +3,8 @@ package cn.edu.nuc.cushion.adapter;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
@@ -31,5 +33,17 @@ public class SelectAdapter extends BaseQuickAdapter<Site,BaseViewHolder> {
         ImageView imageView = helper.getView(R.id.img);
         TextView textView = helper.getView(R.id.tweetText);
         textView.setText(item.getName());
+
+        if(item.getName().equals("一道门")){
+            Glide.with(mContext).load(R.drawable.onedoor).into(imageView);
+        }else if(item.getName().equals("二道门")){
+            Glide.with(mContext).load(R.drawable.twodoor).into(imageView);
+        }else if(item.getName().equals("三道门")){
+            Glide.with(mContext).load(R.drawable.threedoor).into(imageView);
+        }else if(item.getName().equals("四道门")){
+            Glide.with(mContext).load(R.drawable.fourdoor).into(imageView);
+        }else{
+            Glide.with(mContext).load(R.drawable.fivedoor).into(imageView);
+        }
     }
 }

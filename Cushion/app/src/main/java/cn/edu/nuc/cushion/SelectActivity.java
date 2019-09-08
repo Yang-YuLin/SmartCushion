@@ -33,7 +33,7 @@ public class SelectActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new SelectAdapter(R.layout.item_site, mSiteList);
+        adapter = new SelectAdapter(R.layout.item_site_passenger, mSiteList);
         adapter.openLoadAnimation();
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
