@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#2196F3"
+        android:background="#ffbb00"
         android:gravity="center"
         android:text="坐垫"
         android:textColor="#FFFFFF"

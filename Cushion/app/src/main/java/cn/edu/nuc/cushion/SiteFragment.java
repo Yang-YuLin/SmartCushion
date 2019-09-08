@@ -164,7 +164,7 @@ public class SiteFragment extends Fragment {
             @Override
             public void run() {
                 ImageView imageViewOld = (ImageView) adapter.getViewByPosition(mRecyclerView, position, R.id.circle);
-                imageViewOld.setImageResource(isRed ? R.drawable.cricle_red : R.drawable.circle);
+                imageViewOld.setImageResource(isRed ? R.drawable.circle_yellow : R.drawable.circle);
             }
         });
     }
