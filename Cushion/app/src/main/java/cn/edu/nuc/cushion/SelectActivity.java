@@ -1,12 +1,10 @@
 package cn.edu.nuc.cushion;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
@@ -14,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import cn.edu.nuc.cushion.adapter.SelectAdapter;
-import cn.edu.nuc.cushion.bean.Route;
 import cn.edu.nuc.cushion.bean.Site;
 import cn.edu.nuc.cushion.utils.DataServer;
 import okhttp3.Call;
