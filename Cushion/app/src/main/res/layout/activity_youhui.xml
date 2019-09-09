@@ -12,7 +12,7 @@
         android:text="优惠中心"
         android:textSize="20sp"
         android:textColor="#FFFFFF"
-        android:background="#2196F3">
+        android:background="#ffbb00">
     </TextView>
 
     <ImageView

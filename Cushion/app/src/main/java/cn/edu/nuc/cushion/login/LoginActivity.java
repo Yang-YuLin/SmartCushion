@@ -18,6 +18,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 import cn.edu.nuc.cushion.DriverActivity;
+import cn.edu.nuc.cushion.MyService;
 import cn.edu.nuc.cushion.PassengerActivity;
 import cn.edu.nuc.cushion.R;
 
@@ -39,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         Logger.addLogAdapter(new AndroidLogAdapter());
         initView();
         setListener();
+
+        Intent intent = new Intent(this,MyService.class);
+        startService(intent);
     }
 
     private void initView() {

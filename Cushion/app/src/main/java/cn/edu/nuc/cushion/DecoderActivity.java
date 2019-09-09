@@ -38,8 +38,7 @@ public class DecoderActivity extends AppCompatActivity implements ActivityCompat
         super.onCreate(savedInstanceState);
         Logger.addLogAdapter(new AndroidLogAdapter());
 
-        Intent intent = new Intent(this,MyService.class);
-        startService(intent);
+
 
         setContentView(R.layout.activity_decoder);
         mainLayout = (ViewGroup) findViewById(R.id.main_layout);

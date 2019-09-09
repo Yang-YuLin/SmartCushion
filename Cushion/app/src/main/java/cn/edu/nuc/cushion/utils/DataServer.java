@@ -64,7 +64,7 @@ public class DataServer {
      * @param param    灯亮灭的参数
      */
     public void sendOnOff(int param) {
-        String url = "http://192.168.0.1/cgi-bin/send_node.cgi? =type=11%26id=3%26data=" + String.valueOf(param);
+        String url = "http://192.168.0.1/cgi-bin/send_node.cgi?=type=11%26id=3%26data=" + String.valueOf(param);
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -88,7 +88,7 @@ public class DataServer {
      * @param callback
      */
     public void getCurrentSite(int driverId, Callback callback) {
-        String url = "http://192.168.0.100:8080/front/getRoute/?id=" + String.valueOf(driverId);
+        String url = "http://192.168.0.102:8080/front/getRoute/?id=" + String.valueOf(driverId);
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -103,7 +103,7 @@ public class DataServer {
      * @param callback
      */
     public void setCurrentSite(int driverId, int curSite, Callback callback) {
-        String url = "http://192.168.0.100:8080/front/editRoute/";
+        String url = "http://192.168.0.102:8080/front/editRoute/";
         RequestBody requestBody = new FormBody.Builder()
                 .add("id", String.valueOf(driverId))
                 .add("site_id", String.valueOf(curSite))
@@ -133,7 +133,7 @@ public class DataServer {
             public void onResponse(Call call, Response response) throws IOException {
                 Site s = new Gson().fromJson(response.body().string(), Site.class);
 
-                String url = "http://192.168.0.100:8080/front/editCushionSite/";
+                String url = "http://192.168.0.102:8080/front/editCushionSite/";
 
                 RequestBody requestBody = new FormBody.Builder()
                         .add("id", String.valueOf(id))
@@ -156,7 +156,7 @@ public class DataServer {
      * @param callback
      */
     public void getSiteList(Callback callback) {
-        String url = "http://192.168.0.100:8080/front/getSiteList/";
+        String url = "http://192.168.0.102:8080/front/getSiteList/";
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -170,7 +170,7 @@ public class DataServer {
      * @param callback
      */
     public void getSite(int siteId, Callback callback) {
-        String url = "http://192.168.0.100:8080/front/getSiteById/?id=" + String.valueOf(siteId);
+        String url = "http://192.168.0.102:8080/front/getSiteById/?id=" + String.valueOf(siteId);
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -183,7 +183,7 @@ public class DataServer {
      * @param callback
      */
     public void getCushionList(Callback callback) {
-        String url = "http://192.168.0.100:8080/front/getCushionList";
+        String url = "http://192.168.0.102:8080/front/getCushionList";
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -198,7 +198,7 @@ public class DataServer {
      * @param callback
      */
     public void updateCushionInfo(HardInfo.TemSecure temSecure, int id, Callback callback) {
-        String url = "http://192.168.0.100:8080/front/editCushion/";
+        String url = "http://192.168.0.102:8080/front/editCushion/";
         double temperature = temSecure.getTemperature();
         String isSit = temSecure.isSit();
 
@@ -220,7 +220,7 @@ public class DataServer {
      * @param callback
      */
     public void requestNews(Callback callback) {
-        String url = "http://192.168.0.100:8000/news";
+        String url = "http://192.168.0.102:8000/news";
         Request request = new Request.Builder()
                 .url(url)
                 .get()

@@ -1,15 +1,14 @@
 package cn.edu.nuc.cushion;
 
 import android.app.Service;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
-import android.support.v7.app.AlertDialog;
+
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+
 import java.io.IOException;
+
 import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.HardInfo;
 import cn.edu.nuc.cushion.bean.Route;
@@ -21,19 +20,7 @@ import okhttp3.Response;
 
 public class MyService extends Service {
     private DataServer dataServer = new DataServer();
-    public static final int UPDATE = 1;
-    public Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case UPDATE:
-                    showMessage();
-                    break;
-                default:
-                    break;
-            }
-        }
-    };;
+    private int flag = 1;
 
     /**
      * 在服务创建的时候调用
@@ -41,7 +28,6 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.d("here1");
     }
 
     /**
@@ -55,9 +41,6 @@ public class MyService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Logger.d("here2");
-
-
         timerTask(3000);
         return super.onStartCommand(intent, flags, startId);
     }
@@ -68,13 +51,11 @@ public class MyService extends Service {
      */
     @Override
     public void onDestroy() {
-        Logger.d("here3");
         super.onDestroy();
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        Logger.d("here4");
         return null;
     }
 
@@ -89,14 +70,11 @@ public class MyService extends Service {
             public void run() {
                 while (true) {
                     update();
-
                     getPurposeId();
                     getCurrentId();
                     checkArrival();
                     checkLeave();
-
-                    Logger.d("定时方法  myservice1 " + currentId + " " + purposeId);
-
+                    Logger.d("定时方法  myservice  当前站:" + currentId + "  目的站:" + purposeId);
                     try {
                         Thread.sleep(timeInterval);
                     } catch (InterruptedException e) {
@@ -138,14 +116,14 @@ public class MyService extends Service {
         });
     }
 
-    private int currentId = -1; // 当前站点
-    private int purposeId = -2; //目的站
+    public int currentId = -1; // 当前站点
+    public int purposeId = -2; //目的站
 
     public void getCurrentId() {
         dataServer.getCurrentSite(1, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -162,7 +140,7 @@ public class MyService extends Service {
         dataServer.getCushionList(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                e.printStackTrace();
             }
 
             @Override
@@ -178,15 +156,13 @@ public class MyService extends Service {
         if (currentId == purposeId) {
             //开灯 振动
             Logger.d("到站了 myservice");
-            dataServer.sendOnOff(4);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Message message = new Message();
-                    message.what = UPDATE;
-                    handler.sendMessage(message);//将message对象发送出去
-                }
-            }).start();
+            dataServer.sendOnOff(8);
+//            TipHelper.vibrate(MyService.this, new long[]{800, 1000}, false);//到站提醒,即手机震动
+
+//            for (int i = 0; i < 10; i++) {
+            TipHelper.vibrate(MyService.this, 500);//到站提醒,即手机震动
+//            }
+
         }
     }
 
@@ -199,6 +175,7 @@ public class MyService extends Service {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
                 Cushion[] cushions = new Gson().fromJson(response.body().string(), Cushion[].class);
                 Cushion c = cushions[0];
                 if (c.getIs_sitting().equals("否")) {
@@ -206,28 +183,11 @@ public class MyService extends Service {
                     //坐垫的目标站点设置为-1
                     Logger.d("leave myservice");
                     dataServer.sendOnOff(0);
-                    c.setSite_id(-1);
+
+                    TipHelper.cancel(MyService.this);
+
                 }
             }
         });
-
-    }
-
-    /**
-     * 到站提醒,即手机震动
-     */
-    public void showMessage() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getApplicationContext());
-        dialog.setTitle("温馨提示");
-        dialog.setMessage("您已到站，请携带好随身物品下车!");
-        dialog.setPositiveButton("好的", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                TipHelper.cancel(getApplicationContext());
-                dataServer.sendOnOff(0);
-            }
-        });
-        dialog.show();
-        TipHelper.vibrate(MyService.this, new long[]{800, 1000, 800, 1000, 800, 1000}, true);
     }
 }
