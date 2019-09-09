@@ -1,4 +1,4 @@
-package cn.edu.nuc.cushion;
+package cn.edu.nuc.cushion.utils;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,8 +12,6 @@ import java.io.IOException;
 import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.HardInfo;
 import cn.edu.nuc.cushion.bean.Route;
-import cn.edu.nuc.cushion.utils.DataServer;
-import cn.edu.nuc.cushion.utils.TipHelper;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -157,12 +155,7 @@ public class MyService extends Service {
             //开灯 振动
             Logger.d("到站了 myservice");
             dataServer.sendOnOff(8);
-//            TipHelper.vibrate(MyService.this, new long[]{800, 1000}, false);//到站提醒,即手机震动
-
-//            for (int i = 0; i < 10; i++) {
             TipHelper.vibrate(MyService.this, 500);//到站提醒,即手机震动
-//            }
-
         }
     }
 
@@ -178,7 +171,7 @@ public class MyService extends Service {
 
                 Cushion[] cushions = new Gson().fromJson(response.body().string(), Cushion[].class);
                 Cushion c = cushions[0];
-                if (c.getIs_sitting().equals("否")) {
+                if (c.getIs_sitting().equals("否") || currentId != purposeId) {
                     //关灯
                     //坐垫的目标站点设置为-1
                     Logger.d("leave myservice");

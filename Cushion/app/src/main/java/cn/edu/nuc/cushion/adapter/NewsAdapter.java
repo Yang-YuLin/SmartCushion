@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import java.util.List;
-import cn.edu.nuc.cushion.ContentActivity;
+import cn.edu.nuc.cushion.passenger.ContentActivity;
 import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.bean.News;
 

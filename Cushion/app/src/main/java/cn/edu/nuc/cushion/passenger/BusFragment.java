@@ -1,4 +1,4 @@
-package cn.edu.nuc.cushion;
+package cn.edu.nuc.cushion.passenger;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.adapter.NewsAdapter;
 import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.News;

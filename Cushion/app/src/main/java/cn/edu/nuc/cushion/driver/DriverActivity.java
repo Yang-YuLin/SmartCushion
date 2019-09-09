@@ -1,4 +1,4 @@
-package cn.edu.nuc.cushion;
+package cn.edu.nuc.cushion.driver;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +12,9 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.edu.nuc.cushion.mine.MineFragment;
+import cn.edu.nuc.cushion.R;
 
 /**
  * Created by Yangyulin on 2019/9/7.

@@ -1,4 +1,4 @@
-package cn.edu.nuc.cushion;
+package cn.edu.nuc.cushion.passenger;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import android.support.design.widget.BottomNavigationView;
 import com.orhanobut.logger.Logger;
+
+import cn.edu.nuc.cushion.mine.MineFragment;
+import cn.edu.nuc.cushion.R;
 
 /**
  * Created by Yangyulin on 2019/9/2.

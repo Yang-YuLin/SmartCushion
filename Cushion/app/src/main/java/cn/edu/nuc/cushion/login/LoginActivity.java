@@ -17,9 +17,9 @@ import android.widget.EditText;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
-import cn.edu.nuc.cushion.DriverActivity;
-import cn.edu.nuc.cushion.MyService;
-import cn.edu.nuc.cushion.PassengerActivity;
+import cn.edu.nuc.cushion.driver.DriverActivity;
+import cn.edu.nuc.cushion.utils.MyService;
+import cn.edu.nuc.cushion.passenger.PassengerActivity;
 import cn.edu.nuc.cushion.R;
 
 /**

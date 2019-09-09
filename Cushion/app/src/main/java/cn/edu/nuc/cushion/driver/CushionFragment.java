@@ -1,4 +1,4 @@
-package cn.edu.nuc.cushion;
+package cn.edu.nuc.cushion.driver;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.adapter.CushionQuickAdapter;
 import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.Route;

@@ -1,4 +1,4 @@
-package cn.edu.nuc.cushion;
+package cn.edu.nuc.cushion.driver;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.adapter.SiteQuickAdapter;
 import cn.edu.nuc.cushion.bean.Route;
 import cn.edu.nuc.cushion.bean.Site;
@@ -47,6 +48,8 @@ public class SiteFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_site, container, false);
+
+
         mRecyclerView = view.findViewById(R.id.recycler_view);
         change_site = view.findViewById(R.id.change_site);
         change_site.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +169,8 @@ public class SiteFragment extends Fragment {
                 ImageView imageViewOld = (ImageView) adapter.getViewByPosition(mRecyclerView, position, R.id.circle);
                 if (imageViewOld != null) {
                     imageViewOld.setImageResource(isRed ? R.drawable.circle_yellow : R.drawable.circle);
+                } else {
+                    Logger.d("sitefragment ");
                 }
             }
         });

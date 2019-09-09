@@ -16,8 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-import cn.edu.nuc.cushion.DriverActivity;
-import cn.edu.nuc.cushion.PassengerActivity;
+import cn.edu.nuc.cushion.driver.DriverActivity;
+import cn.edu.nuc.cushion.passenger.PassengerActivity;
 import cn.edu.nuc.cushion.R;
 
 /**

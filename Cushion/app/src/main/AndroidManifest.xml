@@ -22,19 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DecoderActivity" />
+        <activity android:name=".passenger.DecoderActivity" />
         <activity
-            android:name=".SelectActivity"
+            android:name=".passenger.SelectActivity"
             android:label="选择目的站" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".YouhuiActivity" />
-        <activity android:name=".PassengerActivity" />
+        <activity android:name=".mine.YouhuiActivity" />
+        <activity android:name=".passenger.PassengerActivity" />
         <activity android:name=".login.RegisterActivity" />
-        <activity android:name=".DriverActivity" />
-        <activity android:name=".ContentActivity" />
+        <activity android:name=".driver.DriverActivity" />
+        <activity android:name=".passenger.ContentActivity" />
 
         <service
-            android:name=".MyService">
+            android:name=".utils.MyService">
         </service>
     </application>
 

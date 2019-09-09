@@ -1,4 +1,4 @@
-package cn.edu.nuc.cushion;
+package cn.edu.nuc.cushion.passenger;
 
 import android.Manifest;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView.OnQRCodeReadListener;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+
+import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.weiget.PointsOverlayView;
 
 /**
