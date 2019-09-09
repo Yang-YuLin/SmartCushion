@@ -98,6 +98,7 @@ public class MyService extends Service {
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
                 HardInfo.TemSecure temSecure = dataServer.parseHardJson(json);
+
                 dataServer.updateCushionInfo(temSecure, 1, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {

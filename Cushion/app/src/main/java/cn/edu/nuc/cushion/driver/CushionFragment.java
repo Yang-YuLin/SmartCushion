@@ -20,6 +20,7 @@ import java.util.List;
 import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.adapter.CushionQuickAdapter;
 import cn.edu.nuc.cushion.bean.Cushion;
+import cn.edu.nuc.cushion.bean.HardInfo;
 import cn.edu.nuc.cushion.bean.Route;
 import cn.edu.nuc.cushion.bean.Site;
 import cn.edu.nuc.cushion.utils.DataServer;
@@ -53,10 +54,10 @@ public class CushionFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new CushionQuickAdapter(R.layout.item_cushion, mCushionList, idSiteMap);
-        mRecyclerView.setAdapter(adapter);
+        Logger.d("啊啊1"+mCushionList.size());
 
-        initCushion();
+
+        timerTask(1000);
         return view;
     }
 
@@ -73,20 +74,40 @@ public class CushionFragment extends Fragment {
 
                 Cushion[] cushions = new Gson().fromJson(json,Cushion[].class);
 
+                List<Cushion> mCushionList1 = new ArrayList<>();
                 for (int i = 0; i < cushions.length; i++) {
                     Cushion cushion = cushions[i];
-                    mCushionList.add(cushion);
+                    mCushionList1.add(cushion);
                 }
+                Logger.d("啊啊2"+mCushionList1.size());
+                mCushionList = mCushionList1;
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        adapter = new CushionQuickAdapter(R.layout.item_cushion, mCushionList, idSiteMap);
                         adapter.notifyDataSetChanged();
+                        mRecyclerView.setAdapter(adapter);
                     }
                 });
-
             }
         });
+    }
 
+    public void timerTask(final long timeInterval) {
+        Runnable runnable = new Runnable() {
+            public void run() {
+                while (true) {
+                    initCushion();
+                    try {
+                        Thread.sleep(timeInterval);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 }
