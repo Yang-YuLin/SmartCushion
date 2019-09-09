@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,40 +61,47 @@ public class BusFragment extends Fragment{
         recyclerView.setLayoutManager(layoutManager);
         adapter = new NewsAdapter(newslist,getContext());
         recyclerView.setAdapter(adapter);
-        dataServer.getCurrentSite(1, new Callback(){
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
+        updateCurrentSite(1000);
+//        dataServer.getCurrentSite(1, new Callback(){
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String json = response.body().string();
+//                Route route = new Gson().fromJson(json, Route.class);
+//
+//                currentSite.setText("当前站:" + route.getSite_id() + "道门");
+//            }
+//        });
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String json = response.body().string();
-                Route route = new Gson().fromJson(json, Route.class);
 
-                currentSite.setText("当前站:" + route.getSite_id() + "道门");
-            }
-        });
-
-        dataServer.getCushionList(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String json = response.body().string();
-                Cushion[] cushions = new Gson().fromJson(json,Cushion[].class);
-                if(cushions[0].getSite_id()!=-1){
-                    purposeSite.setText("目的站:" + cushions[0].getSite_id() + "道门");
-                }
-            }
-        });
         return view;
     }
 
-    private void initPushs(){
+    public void updateCurrentSite(final long timeInterval){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    getCurrentSite();
+                    getCushionList();
+                    try {
+                        Thread.sleep(timeInterval);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+
+
+    public void initPushs(){
         dataServer.requestNews(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -112,6 +121,47 @@ public class BusFragment extends Fragment{
                         adapter.notifyDataSetChanged();
                     }
                 });
+            }
+        });
+    }
+
+    public void getCurrentSite(){
+        dataServer.getCurrentSite(1, new Callback(){
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                final Route route = new Gson().fromJson(json, Route.class);
+                Logger.d(route.getSite_id()+"输出"+route.getSitename());
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                        currentSite.setText("当前站:" + route.getSite_id() + "道门");
+                    }
+                });
+            }
+        });
+    }
+
+    public void getCushionList(){
+        dataServer.getCushionList(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                Cushion[] cushions = new Gson().fromJson(json,Cushion[].class);
+                if(cushions[0].getSite_id()!=-1){
+                    purposeSite.setText("目的站:" + cushions[0].getSite_id() + "道门");
+                }
             }
         });
     }

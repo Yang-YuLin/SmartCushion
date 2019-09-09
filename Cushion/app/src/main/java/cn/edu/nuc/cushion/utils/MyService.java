@@ -60,7 +60,6 @@ public class MyService extends Service {
     /**
      * 定时函数
      * 每隔一段时间执行一次
-     *
      * @param timeInterval
      */
     public void timerTask(final long timeInterval) {

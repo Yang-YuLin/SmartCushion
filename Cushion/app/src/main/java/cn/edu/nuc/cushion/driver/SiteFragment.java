@@ -11,15 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.adapter.SiteQuickAdapter;
 import cn.edu.nuc.cushion.bean.Route;
@@ -69,7 +66,6 @@ public class SiteFragment extends Fragment {
 
                         curSite = route.getSite_id();
 
-
                         changeIcon(curSite - 1, false);
 
                         startSie = route.getStart();
@@ -82,9 +78,7 @@ public class SiteFragment extends Fragment {
                         }
                         curSite += flag;
 
-
                         changeIcon(curSite - 1, true);
-
 
                         Logger.d("222" + curSite);
 

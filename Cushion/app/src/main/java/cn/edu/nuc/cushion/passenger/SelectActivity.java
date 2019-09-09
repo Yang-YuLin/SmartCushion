@@ -1,5 +1,7 @@
 package cn.edu.nuc.cushion.passenger;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -82,7 +84,8 @@ public class SelectActivity extends AppCompatActivity {
                                 Toast.makeText(SelectActivity.this,"您已选择" + (position+1) + "道门作为目的站",Toast.LENGTH_SHORT).show();
                             }
                         });
-
+                        Intent intent = new Intent(SelectActivity.this,PassengerActivity.class);
+                        startActivity(intent);
                     }
                 });
            }
