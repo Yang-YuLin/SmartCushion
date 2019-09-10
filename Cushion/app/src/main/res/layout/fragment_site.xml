@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         android:background="#ffbb00"
         android:gravity="center"
-        android:text="站点"
+        android:text="站点管理"
         android:textColor="#FFFFFF"
         android:textSize="20sp"></TextView>
 

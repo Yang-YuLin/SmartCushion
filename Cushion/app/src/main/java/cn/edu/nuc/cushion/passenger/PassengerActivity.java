@@ -36,8 +36,11 @@ public class PassengerActivity extends AppCompatActivity {
                     case R.id.navigation_bus:
                         showFragment(0);
                         return true;
-                    case R.id.navigation_mine:
+                    case R.id.navigation_history:
                         showFragment(1);
+                        return true;
+                    case R.id.navigation_mine:
+                        showFragment(2);
                         return true;
                 }
                 return false;
@@ -54,6 +57,7 @@ public class PassengerActivity extends AppCompatActivity {
             fragmentList = new ArrayList<>();
         }
         fragmentList.add(new BusFragment());
+        fragmentList.add(new HistoryFragment());
         fragmentList.add(new MineFragment());
     }
 

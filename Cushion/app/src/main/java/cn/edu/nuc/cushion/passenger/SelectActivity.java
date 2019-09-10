@@ -84,6 +84,17 @@ public class SelectActivity extends AppCompatActivity {
                                 Toast.makeText(SelectActivity.this,"您已选择" + (position+1) + "道门作为目的站",Toast.LENGTH_SHORT).show();
                             }
                         });
+                        dataServer.insertRecordList(position + 1, 1, new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String json = response.body().string();
+                            }
+                        });
                         Intent intent = new Intent(SelectActivity.this,PassengerActivity.class);
                         startActivity(intent);
                     }

@@ -3,10 +3,15 @@
     <item
         android:id="@+id/navigation_bus"
         android:icon="@drawable/bus"
-        android:title="乘    车"/>
+        android:title="扫码乘车"/>
+
+    <item
+        android:id="@+id/navigation_history"
+        android:icon="@drawable/mine"
+        android:title="乘车记录"/>
 
     <item
         android:id="@+id/navigation_mine"
         android:icon="@drawable/mine"
-        android:title="我    的"/>
+        android:title="个人中心"/>
 </menu>

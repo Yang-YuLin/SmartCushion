@@ -12,6 +12,7 @@ import java.io.IOException;
 import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.HardInfo;
 import cn.edu.nuc.cushion.bean.Route;
+import cn.edu.nuc.cushion.login.LoginActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -154,8 +155,11 @@ public class MyService extends Service {
         if (currentId == purposeId) {
             //开灯 振动
             Logger.d("到站了 myservice");
-            dataServer.sendOnOff(8);
-            TipHelper.vibrate(MyService.this, 500);//到站提醒,即手机震动
+            dataServer.sendOnOff(4);
+            if(!LoginActivity.identity){
+                TipHelper.vibrate(MyService.this, 500);//到站提醒,即手机震动
+
+            }
         }
     }
 

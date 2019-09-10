@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         android:background="#ffbb00"
         android:gravity="center"
-        android:text="乘车"
+        android:text="扫码乘车"
         android:textColor="#FFFFFF"
         android:textSize="20sp"/>
 

@@ -62,22 +62,6 @@ public class BusFragment extends Fragment{
         adapter = new NewsAdapter(newslist,getContext());
         recyclerView.setAdapter(adapter);
         updateCurrentSite(1000);
-//        dataServer.getCurrentSite(1, new Callback(){
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                String json = response.body().string();
-//                Route route = new Gson().fromJson(json, Route.class);
-//
-//                currentSite.setText("当前站:" + route.getSite_id() + "道门");
-//            }
-//        });
-
-
         return view;
     }
 
