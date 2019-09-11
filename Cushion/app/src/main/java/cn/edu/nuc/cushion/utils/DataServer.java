@@ -233,7 +233,7 @@ public class DataServer {
      * @param callback 用Record[]来解析
      */
     public void getRecordList(int adminId,Callback callback) {
-        String url = "http://192.168.0.100:8080/front/getRecords?adminId=" + String.valueOf(adminId);
+        String url = "http://192.168.0.104:8080/front/getRecords?adminId=" + String.valueOf(adminId);
         Request request = new Request.Builder()
                 .url(url)
                 .get()

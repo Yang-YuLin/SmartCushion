@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.adapter.RecordAdapter;
@@ -40,8 +40,10 @@ public class HistoryFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
+        adapter = new RecordAdapter(R.layout.item_record, mRecordList);
+        mRecyclerView.setAdapter(adapter);
 
-        timerTask(2000);
+        initRecord();
         return view;
     }
 
@@ -58,41 +60,17 @@ public class HistoryFragment extends Fragment {
 
                 Record[] records = new Gson().fromJson(json,Record[].class);
 
-                Logger.d("大小"+records.length);
-                final List<Record> mRecordList1 = new ArrayList<>();
-                for (int i = 0; i < records.length; i++) {
-                    Record record = records[i];
-                    mRecordList1.add(record);
-                }
+                mRecordList.addAll(Arrays.asList(records));
 
-                mRecordList = mRecordList1;
+                Logger.d("record debug " + mRecordList.size() + mRecordList.get(0));
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        adapter = new RecordAdapter(R.layout.item_record, mRecordList1);
                         adapter.notifyDataSetChanged();
-                        mRecyclerView.setAdapter(adapter);
                     }
                 });
             }
         });
-    }
-
-    public void timerTask(final long timeInterval) {
-        Runnable runnable = new Runnable() {
-            public void run() {
-                while (true) {
-                    initRecord();
-                    try {
-                        Thread.sleep(timeInterval);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        Thread thread = new Thread(runnable);
-        thread.start();
     }
 }
