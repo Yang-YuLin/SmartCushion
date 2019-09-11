@@ -8,7 +8,6 @@ public class Site {
      * id : 1
      * names : 一道门
      */
-
     private int id;
     private String names;
     private String url;

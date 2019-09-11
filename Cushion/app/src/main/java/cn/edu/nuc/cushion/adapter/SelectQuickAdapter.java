@@ -3,7 +3,6 @@ package cn.edu.nuc.cushion.adapter;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -14,18 +13,10 @@ import cn.edu.nuc.cushion.bean.Site;
 /**
  * Created by Yangyulin on 2019/9/2.
  */
-public class SelectAdapter extends BaseQuickAdapter<Site,BaseViewHolder> {
+public class SelectQuickAdapter extends BaseQuickAdapter<Site,BaseViewHolder> {
 
-    public SelectAdapter(int layoutResId, @Nullable List<Site> data) {
+    public SelectQuickAdapter(int layoutResId, @Nullable List<Site> data) {
         super(layoutResId, data);
-    }
-
-    public SelectAdapter(@Nullable List<Site> data) {
-        super(data);
-    }
-
-    public SelectAdapter(int layoutResId) {
-        super(layoutResId);
     }
 
     @Override

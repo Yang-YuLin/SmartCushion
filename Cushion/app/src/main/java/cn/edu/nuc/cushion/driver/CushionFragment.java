@@ -47,15 +47,10 @@ public class CushionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cushion,container,false);
-
         mRecyclerView = view.findViewById(R.id.recycler_view);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-
-        Logger.d("啊啊1"+mCushionList.size());
-
 
         timerTask(1000);
         return view;
@@ -79,7 +74,6 @@ public class CushionFragment extends Fragment {
                     Cushion cushion = cushions[i];
                     mCushionList1.add(cushion);
                 }
-                Logger.d("啊啊2"+mCushionList1.size());
                 mCushionList = mCushionList1;
 
                 getActivity().runOnUiThread(new Runnable() {

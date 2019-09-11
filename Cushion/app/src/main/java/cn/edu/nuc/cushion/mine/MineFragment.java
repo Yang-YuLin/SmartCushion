@@ -27,16 +27,11 @@ public class MineFragment extends Fragment {
     private CardView youhui;
     private CardView setting;
     private CardView account;
-    private SharedPreferences sharedPreferences;
-    private String telNum;
-    private String nickName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine,container,false);
-
-        sharedPreferences = getActivity().getSharedPreferences("data", getActivity().MODE_PRIVATE);
 
         telNumTv = view.findViewById(R.id.telNum);
         nickNameTv = view.findViewById(R.id.nickName);

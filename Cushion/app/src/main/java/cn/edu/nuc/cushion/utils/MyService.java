@@ -3,12 +3,10 @@ package cn.edu.nuc.cushion.utils;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-
 import com.google.gson.Gson;
+import com.orhanobut.logger.CsvFormatStrategy;
 import com.orhanobut.logger.Logger;
-
 import java.io.IOException;
-
 import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.HardInfo;
 import cn.edu.nuc.cushion.bean.Route;
@@ -157,8 +155,7 @@ public class MyService extends Service {
             Logger.d("到站了 myservice");
             dataServer.sendOnOff(4);
             if(!LoginActivity.identity){
-                TipHelper.vibrate(MyService.this, 500);//到站提醒,即手机震动
-
+                TipHelper.vibrate(MyService.this, 1000);//到站提醒,即手机震动
             }
         }
     }
@@ -178,11 +175,22 @@ public class MyService extends Service {
                 if (c.getIs_sitting().equals("否") || currentId != purposeId) {
                     //关灯
                     //坐垫的目标站点设置为-1
+
                     Logger.d("leave myservice");
                     dataServer.sendOnOff(0);
-
                     TipHelper.cancel(MyService.this);
 
+                    /*dataServer.setPruposeDefault(1, new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+
+                        }
+                    });*/
                 }
             }
         });

@@ -46,7 +46,6 @@ public class SiteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_site, container, false);
 
-
         mRecyclerView = view.findViewById(R.id.recycler_view);
         change_site = view.findViewById(R.id.change_site);
         change_site.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +79,6 @@ public class SiteFragment extends Fragment {
 
                         changeIcon(curSite - 1, true);
 
-                        Logger.d("222" + curSite);
-
                         dataServer.setCurrentSite(1, curSite, new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
@@ -112,7 +109,6 @@ public class SiteFragment extends Fragment {
     }
 
     public void initSite() {
-
         dataServer.getSiteList(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

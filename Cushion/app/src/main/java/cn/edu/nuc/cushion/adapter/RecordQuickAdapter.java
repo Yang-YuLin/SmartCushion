@@ -5,13 +5,9 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.gson.Gson;
-import com.orhanobut.logger.Logger;
-
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import cn.edu.nuc.cushion.R;
-import cn.edu.nuc.cushion.bean.Cushion;
 import cn.edu.nuc.cushion.bean.Record;
 import cn.edu.nuc.cushion.bean.Site;
 import cn.edu.nuc.cushion.utils.DataServer;
@@ -19,14 +15,13 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-
 /**
  * Created by Yangyulin on 2019/9/10.
  */
-public class RecordAdapter extends BaseQuickAdapter<Record, BaseViewHolder> {
+public class RecordQuickAdapter extends BaseQuickAdapter<Record, BaseViewHolder> {
     private DataServer dataServer = new DataServer();
 
-    public RecordAdapter(int layoutResId, @Nullable List<Record> data) {
+    public RecordQuickAdapter(int layoutResId, @Nullable List<Record> data) {
         super(layoutResId, data);
     }
 

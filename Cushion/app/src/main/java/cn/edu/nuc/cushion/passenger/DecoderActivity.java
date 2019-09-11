@@ -18,7 +18,6 @@ import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView.OnQRCodeReadListener;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-
 import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.weiget.PointsOverlayView;
 
@@ -39,8 +38,6 @@ public class DecoderActivity extends AppCompatActivity implements ActivityCompat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.addLogAdapter(new AndroidLogAdapter());
-
-
 
         setContentView(R.layout.activity_decoder);
         mainLayout = (ViewGroup) findViewById(R.id.main_layout);
@@ -70,6 +67,22 @@ public class DecoderActivity extends AppCompatActivity implements ActivityCompat
         }
     }
 
+    private void requestCameraPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            Snackbar.make(mainLayout, "Camera access is required to display the camera preview.",
+                    Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ActivityCompat.requestPermissions(DecoderActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION_REQUEST_CAMERA);
+                }
+            }).show();
+        } else {
+            Snackbar.make(mainLayout, "Permission is not available. Requesting camera permission.",
+                    Snackbar.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(DecoderActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION_REQUEST_CAMERA);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,  String[] permissions, int[] grantResults) {
         if (requestCode != MY_PERMISSION_REQUEST_CAMERA) {
@@ -79,49 +92,7 @@ public class DecoderActivity extends AppCompatActivity implements ActivityCompat
             Snackbar.make(mainLayout, "Camera permission was granted.", Snackbar.LENGTH_SHORT).show();
             initQRCodeReaderView();
         } else {
-            Snackbar.make(mainLayout, "Camera permission request was denied.", Snackbar.LENGTH_SHORT)
-                    .show();
-        }
-    }
-
-    // Called when a QR is decoded
-    // "text" : the text encoded in QR
-    // "points" : points where QR control points are placed
-    @Override
-    public void onQRCodeRead(String text, PointF[] points) {
-        resultTextView.setText(text);
-        pointsOverlayView.setPoints(points);
-
-        if (text != null) {
-            //避免乱扫二维码报错
-            try {
-                Intent intent = new Intent(this, SelectActivity.class);
-                startActivity(intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-                Logger.e(e.getMessage());
-            }
-        }
-    }
-
-    private void requestCameraPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            Snackbar.make(mainLayout, "Camera access is required to display the camera preview.",
-                    Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ActivityCompat.requestPermissions(DecoderActivity.this, new String[]{
-                            Manifest.permission.CAMERA
-                    }, MY_PERMISSION_REQUEST_CAMERA);
-                }
-            }).show();
-        } else {
-            Snackbar.make(mainLayout, "Permission is not available. Requesting camera permission.",
-                    Snackbar.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.CAMERA
-            }, MY_PERMISSION_REQUEST_CAMERA);
+            Snackbar.make(mainLayout, "Camera permission request was denied.", Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -150,5 +121,26 @@ public class DecoderActivity extends AppCompatActivity implements ActivityCompat
             }
         });
         qrCodeReaderView.startCamera();
+    }
+
+    // Called when a QR is decoded
+    // "text" : the text encoded in QR
+    // "points" : points where QR control points are placed
+    @Override
+    public void onQRCodeRead(String text, PointF[] points) {
+        resultTextView.setText(text);
+        pointsOverlayView.setPoints(points);
+
+        if (text != null) {
+            //避免乱扫二维码报错
+            try {
+                Intent intent = new Intent(this, SelectActivity.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+                Logger.e(e.getMessage());
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import cn.edu.nuc.cushion.R;
-import cn.edu.nuc.cushion.adapter.RecordAdapter;
+import cn.edu.nuc.cushion.adapter.RecordQuickAdapter;
 import cn.edu.nuc.cushion.bean.Record;
 import cn.edu.nuc.cushion.utils.DataServer;
 import okhttp3.Call;
@@ -30,7 +30,7 @@ public class HistoryFragment extends Fragment {
     private List<Record> mRecordList = new ArrayList<>();//要展示的数据源
     private RecyclerView mRecyclerView = null;
     private DataServer dataServer = new DataServer();
-    private RecordAdapter adapter = null;
+    private RecordQuickAdapter adapter = null;
 
     @Nullable
     @Override
@@ -40,7 +40,7 @@ public class HistoryFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
-        adapter = new RecordAdapter(R.layout.item_record, mRecordList);
+        adapter = new RecordQuickAdapter(R.layout.item_record, mRecordList);
         mRecyclerView.setAdapter(adapter);
 
         initRecord();
@@ -57,13 +57,9 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
-
                 Record[] records = new Gson().fromJson(json,Record[].class);
-
                 mRecordList.addAll(Arrays.asList(records));
-
                 Logger.d("record debug " + mRecordList.size() + mRecordList.get(0));
-
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

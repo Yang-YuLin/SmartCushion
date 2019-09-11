@@ -145,6 +145,4 @@ public class HardInfo {
             this.data = data;
         }
     }
-
-
 }

@@ -16,12 +16,10 @@ import cn.edu.nuc.cushion.R;
 import cn.edu.nuc.cushion.bean.News;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
-
     private List<News> mNewsList;
     private Context mContext;
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-
         ImageView push_image;
         TextView title_tv;
         TextView time_tv;

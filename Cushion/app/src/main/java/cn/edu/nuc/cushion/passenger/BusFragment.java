@@ -55,7 +55,7 @@ public class BusFragment extends Fragment{
             startActivity(intent);
             }
         });
-        initPushs();
+        initNews();
         RecyclerView recyclerView = view.findViewById(R.id.push_rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -70,8 +70,8 @@ public class BusFragment extends Fragment{
             @Override
             public void run() {
                 while(true){
-                    getCurrentSite();
-                    getCushionList();
+                    getCurrentSite();//当前站
+                    getCushionList();//目的站
                     try {
                         Thread.sleep(timeInterval);
                     } catch (InterruptedException e) {
@@ -84,8 +84,7 @@ public class BusFragment extends Fragment{
         thread.start();
     }
 
-
-    public void initPushs(){
+    public void initNews(){
         dataServer.requestNews(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
